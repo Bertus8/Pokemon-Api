@@ -90,7 +90,7 @@ body {
   color:whitesmoke
 }
 .container-imgCard{
-  background-image:url(/gif/fondoa.gif);
+  background-image:url(/images/fondoa.gif);
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
