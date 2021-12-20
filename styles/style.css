@@ -63,7 +63,7 @@ body {
   background-image:url(/images/fondocard.webp);
   background-repeat: no-repeat;
   background-size: cover;
-  border: solid rgb(255, 174, 0);
+  border: 5px solid rgb(255, 174, 0);
   border-style: groove;
   width: 320px;
   height:680px;
@@ -74,13 +74,20 @@ body {
   flex-wrap: wrap;
   text-align: center;
   margin: 20px 20px;
-  box-shadow: 0px 0px 10px rgb(255, 174, 0);
   border-radius: 10px;
 }
+.card:hover{
+  width: 360px;
+  height: 740px;
+  box-shadow: 10px 10px 10px rgb(0, 0, 0);
+}
+
+
 .title-card{
   text-transform: uppercase;
   margin: 0;
   font-family: 'Bungee', cursive;
+  color:whitesmoke
 }
 .container-imgCard{
   background-image:url(/gif/fondoa.gif);
