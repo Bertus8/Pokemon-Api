@@ -1,4 +1,5 @@
 const containerDiv$$ = document.body.querySelector(".container");
+const button$$ = document.body.querySelector("button");
 
 
 
@@ -50,5 +51,10 @@ const createCharacterGallery = async () => {
 
 
 
+let hazteConTodos = () => {
+button$$.addEventListener("click",() => createCharacterGallery());
+}
+hazteConTodos();
 
-createCharacterGallery()
+
+
