@@ -1,14 +1,15 @@
-const containerDiv$$ = document.body.querySelector(".container");
-const button$$ = document.body.querySelector("button");
-
-
+const containerDiv$$ = document.querySelector(".container");
+const button$$ = document.querySelector("button");
+const containerDivHero$$ = document.querySelector(".container_hero")
+const input$$ = document.querySelector(".search");
 
 const promises = [];
 const createCharacterGallery = async () => {
+  if (promises.length === 0){
   for (let i = 1; i < 151; i++) {
     const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
     promises.push(fetch(url).then(res => res.json()));
-  }
+  }}
   Promise.all(promises).then(results => {
     const pokemon = results.map(data => ({
       name: data.name,
@@ -16,8 +17,13 @@ const createCharacterGallery = async () => {
       image:data.sprites.other.dream_world.front_default,
       type: data.types.map(type => type.type.name).join(", "),
       ability: data.abilities.map(ability => ability.ability.name).join(','),
-      moves: data.moves.map(move => move.move.name).slice(0, 10).join(', ')
+      moves: data.moves.map(move => move.move.name).slice(0, 8).join(', ')
     }));
+    const filteredCharacters = pokemon.filter((data) =>
+    data.name.toLowerCase().includes(input$$.value.toLowerCase()) ||
+    data.type.toLowerCase().includes(input$$.value.toLowerCase())
+    );
+    sendData(filteredCharacters);
     sendData(pokemon);
     console.log(pokemon);
   })
@@ -26,11 +32,10 @@ const createCharacterGallery = async () => {
   function sendData(jsonData) {
     for (let i = 0; i < jsonData.length; i++) {
       const div$$ = document.createElement('div')
-      document.body.appendChild(div$$);
+      containerDiv$$.appendChild(div$$);
         div$$.innerHTML =`
         <div class="card">
         <h2 class="title-card">${jsonData[i].name}</h1>
-        
         <div class="container-imgCard">
         <img class="img-card" src="${jsonData[i].image}" alt="${jsonData[i].name}" max-width="200px" height="200px"/>
         </div>
@@ -45,16 +50,9 @@ const createCharacterGallery = async () => {
         </ul>
         </div>
         </div>
-        ` }
-    }
+        ` };
+        document.querySelector(".container").innerHTML = myHTML;
+    };
 
-
-
-
-let hazteConTodos = () => {
-button$$.addEventListener("click",() => createCharacterGallery());
-}
-hazteConTodos();
-
-
+button$$.addEventListener("click",() => {containerDiv$$.innerHTML="";createCharacterGallery()});
 
