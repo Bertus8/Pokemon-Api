@@ -46,8 +46,9 @@ body {
 }
 
 .hero_gif{
-  width:250px;
+  width:150px;
   margin:20px;
+  transition-duration: 0.5s;
 }
 .hero_button{
   display: block;
